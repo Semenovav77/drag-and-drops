@@ -12,15 +12,17 @@ const AddFormContainer = ({panelIndex, addCard, PanelAdd, addPanel}) => {
         setValue(e.target.value)
     };
     const sendObj = (value, panelIndex) => {
-        if (!PanelAdd) {
-            addCard(value, panelIndex);
-            setValue('');
-            editSwitch(false);
-        } else {
-            addPanel(value);
-            setValue('');
-            editSwitch(false);
-        }
+       if (value) {
+           if (!PanelAdd) {
+               addCard(value, panelIndex);
+               setValue('');
+               editSwitch(false);
+           } else {
+               addPanel(value);
+               setValue('');
+               editSwitch(false);
+           }
+       }
 
     };
 
