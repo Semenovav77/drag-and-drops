@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import './Button.scss';
 
-const Button = ({children, sendCard, value, panelIndex}) => {
+const Button = ({children, sendObj, value, panelIndex}) => {
     return (
-        <button className='button' onClick={() => sendCard(value, panelIndex)}>
+        <button className='button' onClick={() => sendObj(value, panelIndex)}>
             {children}
         </button>
     );

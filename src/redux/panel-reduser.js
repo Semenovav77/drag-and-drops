@@ -1,4 +1,5 @@
 const SET_NEW_CARD = 'panel/SET_NEW_CARD';
+const SET_NEW_PANEL = 'panel/SET_NEW_PANEL';
 
 
 const initialState = [
@@ -35,6 +36,14 @@ const panelReducer = (state = initialState, action) => {
                 }
                 return item;
             });
+        case SET_NEW_PANEL:
+            return [
+                ...state,
+                {
+                    title: action.title,
+                    cards: []
+                }
+            ];
         default:
             return state;
     }
@@ -45,6 +54,13 @@ export const addCard = (card, panelIndex) => {
         type: SET_NEW_CARD,
         card,
         panelIndex
+    }
+};
+
+export const addPanel = (title) => {
+    return {
+        type: SET_NEW_PANEL,
+        title
     }
 };
 
