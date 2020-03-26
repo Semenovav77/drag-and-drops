@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {Card} from './../../components';
 import {AddFormContainer} from './../../containers';
 import {Droppable} from 'react-beautiful-dnd';
@@ -31,8 +30,5 @@ const Panel = ({panel: {title, cards}, panelIndex, addCard, addPanel}) => {
     );
 };
 
-Panel.propTypes = {
-    text: PropTypes.string
-};
 
 export default Panel;
