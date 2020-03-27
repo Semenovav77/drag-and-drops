@@ -1,10 +1,18 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import './Card.scss';
 import {Draggable} from "react-beautiful-dnd";
+import deleteIcon from "../../assets/delete.svg";
 
-const Card = ({children, cardIndex, panelIndex, typeCard}) => {
+const Card = ({children, cardIndex, panelIndex, typeCard, delCard}) => {
+   /* const [showDelBtn, editShowBtn] = useState(false);
+    const showBTN = () => {
+        editShowBtn(!showDelBtn)
+    };*/
+   const onDelete = () => {
+       delCard(panelIndex, cardIndex)
+   };
     return (
         <>
             {(!typeCard) ? (
@@ -15,7 +23,12 @@ const Card = ({children, cardIndex, panelIndex, typeCard}) => {
                                  {...provided.draggableProps}
                                  {...provided.dragHandleProps}
                             >
-                                {children}
+                                <div className='card__content'>
+                                    {children}
+                                </div>
+                                <div className='card__delete-btn' onClick={onDelete}>
+                                    <img src={deleteIcon} alt='Delete svg' />
+                                </div>
                             </div>
                         )}
                     </Draggable>

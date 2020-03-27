@@ -1,6 +1,7 @@
 const SET_NEW_CARD = 'panel/SET_NEW_CARD';
 const SET_NEW_PANEL = 'panel/SET_NEW_PANEL';
 const SET_REORDER_CARD = 'panel/SET_REORDER_CARD';
+const REMOVE_CARD = 'panel/REMOVE_CARD';
 
 
 const initialState = [
@@ -51,13 +52,22 @@ const panelReducer = (state = initialState, action) => {
                     const sourceCard = state[Number(action.source.droppableId)].cards.splice(action.source.index, 1);
                     const newCards = Array.from(item.cards);
                     newCards.splice(action.destination.index, 0, sourceCard);
-                    debugger
                     return {
                         ...item,
                         cards: newCards
                     }
                 }
 
+                return item;
+            });
+        case REMOVE_CARD:
+            return state.map((item, index) => {
+                if (index === action.panelIndex) {
+                    return {
+                        ...item,
+                        cards: item.cards.filter((p,index) => (index != action.cardIndex)),
+                    };
+                }
                 return item;
             });
         default:
@@ -78,6 +88,14 @@ export const addPanel = (title) => {
     return {
         type: SET_NEW_PANEL,
         title
+    }
+};
+
+export const delCard = (panelIndex, cardIndex) => {
+    return {
+        type: REMOVE_CARD,
+        panelIndex,
+        cardIndex
     }
 };
 

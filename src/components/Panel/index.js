@@ -5,7 +5,7 @@ import {Droppable} from 'react-beautiful-dnd';
 
 import './Panel.scss';
 
-const Panel = ({panel: {title, cards}, panelIndex, addCard, addPanel}) => {
+const Panel = ({panel: {title, cards}, panelIndex, addCard, addPanel, delCard}) => {
 
     return (
         <>
@@ -17,7 +17,7 @@ const Panel = ({panel: {title, cards}, panelIndex, addCard, addPanel}) => {
                         </div>
                         <div className='panel__items'>
                             {cards.map((card, index) =>
-                                <Card key={index} cardIndex={index} panelIndex={panelIndex} typeCard={false}>{card}</Card>)
+                                <Card key={index} cardIndex={index} panelIndex={panelIndex} typeCard={false} delCard={delCard}>{card}</Card>)
                             }
                         </div>
                         <AddFormContainer PanelAdd={false} panelIndex={panelIndex} addCard={addCard}

@@ -1,12 +1,12 @@
 import React, {useCallback} from 'react';
 import {connect} from "react-redux";
 
-import {addCard, addPanel, reOrder} from "../redux/panel-reduser";
+import {addCard, addPanel, reOrder, delCard} from "../redux/panel-reduser";
 import {Panel} from "../components";
 import {AddFormContainer} from "./index";
 import {DragDropContext} from "react-beautiful-dnd";
 
-const Panels = ({panel, addCard, addPanel, reOrder}) => {
+const Panels = ({panel, addCard, addPanel, reOrder, delCard}) => {
 
     const onBeforeDragStart = useCallback(() => {
         /*...*/
@@ -35,7 +35,7 @@ const Panels = ({panel, addCard, addPanel, reOrder}) => {
                 onDragUpdate={this.onDragUpdate}*/
                 onDragEnd={onDragEnd}
             >
-                {panel.map((panel, index) => <Panel panel={panel} key={index} panelIndex={index} addCard={addCard}/>)}
+                {panel.map((panel, index) => <Panel panel={panel} key={index} panelIndex={index} addCard={addCard} delCard={delCard}/>)}
             </DragDropContext>
             <div className='panel'>
                 <AddFormContainer PanelAdd={true} addCard={addCard} addPanel={addPanel}/>
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => ({
 });
 
 const PanelContainer = connect(mapStateToProps, {
-    addCard, addPanel, reOrder
+    addCard, addPanel, reOrder, delCard
 })(Panels);
 
 export default PanelContainer;
